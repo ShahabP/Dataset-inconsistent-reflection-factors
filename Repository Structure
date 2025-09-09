@@ -1,0 +1,7 @@
+rir_dataset_walls/
+│
+├── README.md
+├── requirements.txt
+├── generate_rir_dataset_walls.py
+├── plot_rirs.py
+└── utils.py
