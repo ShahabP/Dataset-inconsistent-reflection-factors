@@ -167,18 +167,6 @@ Contributions are welcome! Please feel free to:
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 📚 Citation
-
-If you use this dataset in your research, please cite:
-
-```bibtex
-@misc{rir_inconsistent_walls,
-    title={Room Impulse Response Dataset with Inconsistent Wall Reflection Factors},
-    author={Your Name},
-    year={2025},
-    url={https://github.com/ShahabP/Dataset-inconsistent-reflection-factors}
-}
-```
 
 ## 🔗 References
 
