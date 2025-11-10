@@ -171,5 +171,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🔗 References
 
 - [Pyroomacoustics Documentation](https://pyroomacoustics.readthedocs.io/)
-- [Room Impulse Response Theory](https://en.wikipedia.org/wiki/Impulse_response)
-- [Acoustic Room Modeling](https://www.sciencedirect.com/topics/engineering/room-acoustics)
