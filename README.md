@@ -3,6 +3,15 @@
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+## About
+
+This repository generates synthetic **Room Impulse Responses (RIRs)** and supports two complementary dataset types:
+
+This repository provides a framework for generating a large-scale dataset of Room Impulse Responses (RIRs). Specifically, it simulates 5000 unique room configurations, each with distinct geometry and microphone–source placement. Within each room, all walls are assigned different and inconsistent reflection coefficients.
+
+- **Irregular (per-wall) rooms**: shoebox rooms where each wall has an independent (different) reflection/absorption factor to simulate inconsistent wall properties.
+- **L-shaped (non-convex) rooms**: simple L-shaped polygon generator for concave-room RIRs (rectangular room with a rectangular cutout), useful for studies involving non-convex geometries.
+
 A comprehensive framework for generating synthetic **Room Impulse Responses (RIRs)** with inconsistent wall reflection coefficients for acoustic research and machine learning applications.
 
 This repository supports two kinds of synthetic room datasets:
