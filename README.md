@@ -5,18 +5,9 @@
 
 ## About
 
-This repository generates synthetic **Room Impulse Responses (RIRs)** and supports two complementary dataset types:
+This repository provides a framework for generating a large-scale dataset of Room Impulse Responses (RIRs). Specifically, it can simulate 5000 unique room configurations, each with distinct geometry and microphone–source placement. Within each shoebox room, all walls may be assigned different and inconsistent reflection/absorption coefficients to model irregular wall properties. In addition, the repository includes a simple generator for L-shaped (non-convex) rooms (a rectangular room with a rectangular cutout) to synthesize RIRs for concave geometries.
 
-This repository provides a framework for generating a large-scale dataset of Room Impulse Responses (RIRs). Specifically, it simulates 5000 unique room configurations, each with distinct geometry and microphone–source placement. Within each room, all walls are assigned different and inconsistent reflection coefficients.
-
-- **Irregular (per-wall) rooms**: shoebox rooms where each wall has an independent (different) reflection/absorption factor to simulate inconsistent wall properties.
-- **L-shaped (non-convex) rooms**: simple L-shaped polygon generator for concave-room RIRs (rectangular room with a rectangular cutout), useful for studies involving non-convex geometries.
-
-A comprehensive framework for generating synthetic **Room Impulse Responses (RIRs)** with inconsistent wall reflection coefficients for acoustic research and machine learning applications.
-
-This repository supports two kinds of synthetic room datasets:
-- Irregular walls: shoebox rooms where each wall has an independent (different) reflection/absorption factor.
-- L-shaped rooms: simple non-convex L-shaped room generator for concave-room RIRs.
+Both dataset types are intended for acoustic research and machine learning experiments such as dereverberation, source localization, and acoustic scene analysis.
 
 ## 🎯 Overview
 
@@ -118,10 +109,9 @@ impulse_response = dataset[0]['rir']  # 4096-length RIR
 
 ### Room Configuration
 - **Dimensions**: 3-10m (length/width), 2.5-4m (height)
-- **Shape**: Rectangular shoebox rooms
-# **Shape**: Rectangular shoebox rooms (supports L-shaped concave rooms via the new generator)
-- **Absorption Range**: 0.2-0.8 per wall surface
-- **Wall Surfaces**: 6 independent surfaces (east, west, north, south, ceiling, floor)
+- **Shapes supported**: Shoebox rooms with per-wall, independent absorption coefficients (irregular walls); and simple L-shaped (concave) rooms via the L-shaped generator.
+- **Absorption Range**: 0.2-0.8 per wall surface (shoebox). The L-shaped generator currently uses a simple single absorption value for the whole room model.
+- **Wall Surfaces**: 6 independent surfaces (east, west, north, south, ceiling, floor) for shoebox rooms
 
 ### RIR Properties
 - **Sampling Rate**: 16 kHz
@@ -130,13 +120,21 @@ impulse_response = dataset[0]['rir']  # 4096-length RIR
 - **Output Format**: PyTorch tensors (Float32)
 
 ### Dataset Structure
-Each sample contains:
-- **Geometry Vector** (15 elements):
-  - Room dimensions: `[Lx, Ly, Lz]`
-  - Source position: `[src_x, src_y, src_z]`
-  - Receiver position: `[rec_x, rec_y, rec_z]`
-  - Wall absorption coefficients: `[east, west, north, south, ceiling, floor]`
-- **RIR**: 4096-sample impulse response
+The repository produces two dataset variants with slightly different geometry encodings:
+
+- **Shoebox rooms** (`rir_dataset_walls.pkl`):
+   - **Geometry Vector** (15 elements):
+      - Room dimensions: `[Lx, Ly, Lz]`
+      - Source position: `[src_x, src_y, src_z]`
+      - Receiver position: `[rec_x, rec_y, rec_z]`
+      - Wall absorption coefficients: `[east, west, north, south, ceiling, floor]`
+
+- **L-shaped rooms** (`rir_dataset_l_shaped.pkl`):
+   - **Geometry Vector** (12 elements):
+      - `[Lx, Ly, cut_w, cut_h, height, src_x, src_y, src_z, rec_x, rec_y, rec_z, absorption]`
+      - Note: the L-shaped generator uses a single absorption value for simplicity; expandable to per-wall values if desired.
+
+- **RIR**: 4096-sample impulse response (both dataset types)
 
 ## 📁 Repository Structure
 
