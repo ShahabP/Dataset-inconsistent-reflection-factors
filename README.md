@@ -54,6 +54,22 @@ Generate a dataset of 5000 RIRs with inconsistent wall reflection factors:
 python generate_rir_dataset_walls.py
 ```
 
+### L-Shaped (Non-Convex) Rooms
+
+This repository now includes a simple generator for L-shaped (concave) rooms.
+The model is intentionally simple: it builds a planar L-shaped polygon (a
+rectangular room with a rectangular cutout) and uses pyroomacoustics' polygon
+room support (extruded to 3D when available) to synthesize RIRs.
+
+Generate 5000 L-shaped RIRs (default):
+
+```bash
+python generate_lshaped_rirs.py
+```
+
+The output file is `output/rir_dataset_l_shaped.pkl` and contains tuples of
+`(geometry_vector, rir)` where `geometry_vector` stores `[Lx, Ly, cut_w, cut_h, height, src_xyz, rec_xyz, absorption]`.
+
 This will create `rir_dataset_walls.pkl` containing:
 - **Geometry vectors**: Room dimensions, source/receiver positions, and wall absorption coefficients
 - **RIR data**: 4096-sample impulse responses at 16 kHz sampling rate
@@ -112,6 +128,7 @@ Each sample contains:
 ```
 Dataset-inconsistent-reflection-factors/
 ├── generate_rir_dataset_walls.py   # Main dataset generation script
+├── generate_lshaped_rirs.py        # New: L-shaped room RIR generator
 ├── plot_rirs.py                    # Visualization utility
 ├── utils.py                        # Core RIR generation functions
 ├── requirements.txt                # Python dependencies

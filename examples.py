@@ -18,6 +18,7 @@ from config import (
     SAMPLING_RATE, DATASET_FILENAME, ABSORPTION_RANGE, 
     get_output_path, get_plot_path
 )
+from generate_lshaped_rirs import generate_dataset as generate_l_shaped_dataset
 
 def example_1_basic_usage():
     """Example 1: Basic RIR generation and inspection."""
@@ -262,6 +263,9 @@ def main():
         example_3_custom_visualization()
         example_4_dataset_validation()
         example_5_batch_analysis()
+        # Small L-shaped dataset example (generate 10 samples quickly)
+        print("\nEXAMPLE 6: Generate small L-shaped dataset (10 samples)")
+        generate_l_shaped_dataset(num_rooms=10)
         
         print("\n" + "=" * 50)
         print("All examples completed successfully!")
