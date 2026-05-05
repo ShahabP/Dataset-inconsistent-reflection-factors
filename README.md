@@ -5,6 +5,10 @@
 
 A comprehensive framework for generating synthetic **Room Impulse Responses (RIRs)** with inconsistent wall reflection coefficients for acoustic research and machine learning applications.
 
+This repository supports two kinds of synthetic room datasets:
+- Irregular walls: shoebox rooms where each wall has an independent (different) reflection/absorption factor.
+- L-shaped rooms: simple non-convex L-shaped room generator for concave-room RIRs.
+
 ## 🎯 Overview
 
 This repository generates synthetic RIRs for shoebox-shaped rooms where each wall has **different and inconsistent reflection coefficients**, creating realistic acoustic environments. The generated dataset is particularly valuable for research in:
@@ -23,6 +27,7 @@ This repository generates synthetic RIRs for shoebox-shaped rooms where each wal
 - **Multiple Formats**: Output in both NumPy and PyTorch tensor formats
 - **Visualization Tools**: Built-in plotting utilities for RIR analysis
 - **Research-Ready**: Structured data format suitable for ML training pipelines
+- **L-Shaped Room Generation**: Simple generator to synthesize RIRs for concave L-shaped rooms
 
 ## 🚀 Quick Start
 
@@ -105,6 +110,7 @@ impulse_response = dataset[0]['rir']  # 4096-length RIR
 ### Room Configuration
 - **Dimensions**: 3-10m (length/width), 2.5-4m (height)
 - **Shape**: Rectangular shoebox rooms
+# **Shape**: Rectangular shoebox rooms (supports L-shaped concave rooms via the new generator)
 - **Absorption Range**: 0.2-0.8 per wall surface
 - **Wall Surfaces**: 6 independent surfaces (east, west, north, south, ceiling, floor)
 
